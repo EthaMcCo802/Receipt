@@ -10,10 +10,18 @@ using System.Windows.Forms;
 using System.Threading;
 using System.Media;
 
+/*
+ * Ethan McComb
+ * Mr.T
+ * ICSU3
+ * A basic cash register that allows for someone to pay, gives change, and prints a receipt.
+ */
+
 namespace Receipt
 {
     public partial class Form1 : Form
     {
+        //Global variables
         double pencils = 1.25;
         double erasers = 0.99;
         double pens = 2.34;
@@ -42,7 +50,7 @@ namespace Receipt
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            //Does the calculations 
 
             pencilAmount = Convert.ToInt32(pencilBox.Text);
             erasersAmount = Convert.ToInt32(eraserBox.Text);
@@ -96,7 +104,7 @@ namespace Receipt
 
         private void changeButton_Click(object sender, EventArgs e)
         {
-
+            //Allows for a payment and gives change
             try
             {
                 tendered = Convert.ToInt16(moneyBox.Text);
@@ -120,6 +128,7 @@ namespace Receipt
 
         private void getButton_Click(object sender, EventArgs e)
         {
+            //The actual receipt 
             if ((tendered >= total) && (total > 0))
             {
                 SoundPlayer Print = new SoundPlayer(Properties.Resources.printSound);
@@ -180,6 +189,7 @@ namespace Receipt
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            //Resets everything
             pencilAmount = 0;
             erasersAmount = 0;
             pensAmount = 0;
