@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using System.Media;
 
 namespace Receipt
 {
@@ -41,34 +42,31 @@ namespace Receipt
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try
-            {
-                pencilAmount = Convert.ToInt32(pencilBox.Text);
-                erasersAmount = Convert.ToInt32(eraserBox.Text);
-                pensAmount = Convert.ToInt32(penBox.Text);
 
-                pencilPrice = pencils + pencilAmount;
-                eraserPrice = erasers + erasersAmount;
-                penPrice = pens + pensAmount;
-                subtotal = pencilPrice + eraserPrice + penPrice;
-                tax = subtotal * taxRate;
-                total = subtotal + tax;
 
-                pricesLabel.Text += $"{subtotal.ToString("C")}";
-                pricesLabel.Text += $"\n\n{tax.ToString("C")}";
-                pricesLabel.Text += $"\n\n{total.ToString("C")}";
+            pencilAmount = Convert.ToInt32(pencilBox.Text);
+            erasersAmount = Convert.ToInt32(eraserBox.Text);
+            pensAmount = Convert.ToInt32(penBox.Text);
 
-            }
-            catch
-            {
-                amountLabel.Text = "Please input numbers.";
-            }
+            pencilPrice = pencils * pencilAmount;
+            eraserPrice = erasers * erasersAmount;
+            penPrice = pens * pensAmount;
+            subtotal = pencilPrice + eraserPrice + penPrice;
+            tax = subtotal * taxRate;
+            total = subtotal + tax;
+
+            subtotLabel.Text = $"{subtotal.ToString("C")}";
+            taxLabel.Text = $"{tax.ToString("C")}";
+            totalLabel.Text = $"{total.ToString("C")}";
+
+
+
 
         }
 
-         
-     
-    
+
+
+
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
@@ -92,21 +90,29 @@ namespace Receipt
 
         private void label2_Click(object sender, EventArgs e)
         {
-            
-                
+
+
         }
 
         private void changeButton_Click(object sender, EventArgs e)
         {
+
             try
             {
                 tendered = Convert.ToInt16(moneyBox.Text);
-                change = tendered - total;
-
-                amountLabel.Text = $"{change.ToString("C")}";
+                if (tendered >= total)
+                {
+                    change = tendered - total;
+                    amountLabel.Text = $"{change.ToString("C")}";
+                }
+                else
+                {
+                    amountLabel.Text = "Insufficient funds";
+                }
             }
             catch
-            { amountLabel.Text = "Please input numbers."; 
+            {
+                amountLabel.Text = "Please input numbers";
             }
 
 
@@ -114,53 +120,61 @@ namespace Receipt
 
         private void getButton_Click(object sender, EventArgs e)
         {
-            Refresh();
-            nameLabel.Visible = true;
+            if ((tendered >= total) && (total > 0))
+            {
+                SoundPlayer Print = new SoundPlayer(Properties.Resources.printSound);
+                Print.Play();
+                Refresh();
+                nameLabel.Visible = true;
 
-            Refresh();
-            Thread.Sleep(1000);            
-            productLabel.Text = $"Pencil x{pencilAmount}";
-            numberLabel.Text = $"{pencilPrice.ToString("C")}";
+                Refresh();
+                Thread.Sleep(5);
+                productLabel.Text = $"Pencil x{pencilAmount}";
+                numberLabel.Text = $"{pencilPrice.ToString("C")}";
 
-            Refresh();
-            Thread.Sleep(1000);
-            productLabel.Text += $"\nEraser x{erasersAmount}";
-            numberLabel.Text += $"\n{eraserPrice.ToString("C")}";
+                Refresh();
+                Thread.Sleep(5);
+                productLabel.Text += $"\nEraser x{erasersAmount}";
+                numberLabel.Text += $"\n{eraserPrice.ToString("C")}";
 
-            Refresh();
-            Thread.Sleep(1000);
-            productLabel.Text += $"\nPen x{pensAmount}";
-            numberLabel.Text += $"\n{penPrice.ToString("C")}";
+                Refresh();
+                Thread.Sleep(5);
+                productLabel.Text += $"\nPen x{pensAmount}";
+                numberLabel.Text += $"\n{penPrice.ToString("C")}";
 
-            Refresh();
-            Thread.Sleep(1000);
-            productLabel.Text += $"\n\nSubTotal";
-            numberLabel.Text += $"\n\n{subtotal.ToString("C")}";
+                Refresh();
+                Thread.Sleep(5);
+                productLabel.Text += $"\n\nSubTotal";
+                numberLabel.Text += $"\n\n{subtotal.ToString("C")}";
 
-            Refresh();
-            Thread.Sleep(1000);
-            productLabel.Text += $"\nTax";
-            numberLabel.Text += $"\n{tax.ToString("C")}";
+                Refresh();
+                Thread.Sleep(5);
+                productLabel.Text += $"\nTax";
+                numberLabel.Text += $"\n{tax.ToString("C")}";
 
-            Refresh();
-            Thread.Sleep(1000);
-            productLabel.Text += $"\nTotal";
-            numberLabel.Text += $"\n{total.ToString("C")}";
+                Refresh();
+                Thread.Sleep(5);
+                productLabel.Text += $"\nTotal";
+                numberLabel.Text += $"\n{total.ToString("C")}";
 
-            Refresh();
-            Thread.Sleep(1000);
-            productLabel.Text += $"\n\nTendered";
-            numberLabel.Text += $"\n\n{tendered.ToString("C")}";
+                Refresh();
+                Thread.Sleep(5);
+                productLabel.Text += $"\n\nTendered";
+                numberLabel.Text += $"\n\n{tendered.ToString("C")}";
 
-            Refresh();
-            Thread.Sleep(1000);
-            productLabel.Text += $"\nChange";
-            numberLabel.Text += $"\n{change.ToString("C")}";
+                Refresh();
+                Thread.Sleep(5);
+                productLabel.Text += $"\nChange";
+                numberLabel.Text += $"\n{change.ToString("C")}";
 
-            Refresh();
-            Thread.Sleep(1000);
-            messageLabel.Visible = true; 
-
+                Refresh();
+                Thread.Sleep(5);
+                messageLabel.Visible = true;
+            }
+            else
+            {
+                amountLabel.Text = "Please fill out the required fields";
+            }
 
         }
 
@@ -178,18 +192,20 @@ namespace Receipt
             tendered = 0;
             change = 0;
 
-            pencilBox.Text = "";
-            eraserBox.Text = "";
-            penBox.Text = "";
-            pricesLabel.Text = "";
+            pencilBox.Text = "0";
+            eraserBox.Text = "0";
+            penBox.Text = "0";
+            subtotLabel.Text = "";
+            taxLabel.Text = "";
+            totalLabel.Text = "";
             moneyBox.Text = "";
             amountLabel.Text = "";
-            
+
             productLabel.Text = "";
             numberLabel.Text = "";
 
             nameLabel.Visible = false;
-            messageLabel.Visible = false; 
+            messageLabel.Visible = false;
         }
     }
 }

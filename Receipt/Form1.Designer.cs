@@ -29,16 +29,12 @@ namespace Receipt
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pencilLabel = new System.Windows.Forms.Label();
             this.eraserLabel = new System.Windows.Forms.Label();
             this.penLabel = new System.Windows.Forms.Label();
-            this.pencilBox = new System.Windows.Forms.TextBox();
-            this.eraserBox = new System.Windows.Forms.TextBox();
-            this.penBox = new System.Windows.Forms.TextBox();
             this.calculateButton = new System.Windows.Forms.Button();
             this.subLabel = new System.Windows.Forms.Label();
-            this.pricesLabel = new System.Windows.Forms.Label();
-            this.errorLabel = new System.Windows.Forms.Label();
             this.black = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.moneyBox = new System.Windows.Forms.TextBox();
@@ -53,11 +49,21 @@ namespace Receipt
             this.numberLabel = new System.Windows.Forms.Label();
             this.nameLabel = new System.Windows.Forms.Label();
             this.messageLabel = new System.Windows.Forms.Label();
+            this.pencilBox = new System.Windows.Forms.NumericUpDown();
+            this.eraserBox = new System.Windows.Forms.NumericUpDown();
+            this.penBox = new System.Windows.Forms.NumericUpDown();
+            this.subtotLabel = new System.Windows.Forms.Label();
+            this.taxLabel = new System.Windows.Forms.Label();
+            this.totalLabel = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pencilBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eraserBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.penBox)).BeginInit();
             this.SuspendLayout();
             // 
             // pencilLabel
             // 
             this.pencilLabel.AutoSize = true;
+            this.pencilLabel.BackColor = System.Drawing.Color.Transparent;
             this.pencilLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pencilLabel.Location = new System.Drawing.Point(66, 82);
             this.pencilLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -69,6 +75,7 @@ namespace Receipt
             // eraserLabel
             // 
             this.eraserLabel.AutoSize = true;
+            this.eraserLabel.BackColor = System.Drawing.Color.Transparent;
             this.eraserLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.eraserLabel.Location = new System.Drawing.Point(66, 138);
             this.eraserLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -80,6 +87,7 @@ namespace Receipt
             // penLabel
             // 
             this.penLabel.AutoSize = true;
+            this.penLabel.BackColor = System.Drawing.Color.Transparent;
             this.penLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.penLabel.Location = new System.Drawing.Point(66, 193);
             this.penLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -88,34 +96,6 @@ namespace Receipt
             this.penLabel.TabIndex = 2;
             this.penLabel.Text = "Number of Pens:\r\n\r\n";
             this.penLabel.Click += new System.EventHandler(this.label3_Click);
-            // 
-            // pencilBox
-            // 
-            this.pencilBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pencilBox.Location = new System.Drawing.Point(288, 77);
-            this.pencilBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pencilBox.Name = "pencilBox";
-            this.pencilBox.Size = new System.Drawing.Size(54, 30);
-            this.pencilBox.TabIndex = 3;
-            // 
-            // eraserBox
-            // 
-            this.eraserBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.eraserBox.Location = new System.Drawing.Point(288, 133);
-            this.eraserBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.eraserBox.Name = "eraserBox";
-            this.eraserBox.Size = new System.Drawing.Size(54, 30);
-            this.eraserBox.TabIndex = 4;
-            this.eraserBox.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            // 
-            // penBox
-            // 
-            this.penBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.penBox.Location = new System.Drawing.Point(288, 190);
-            this.penBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.penBox.Name = "penBox";
-            this.penBox.Size = new System.Drawing.Size(54, 30);
-            this.penBox.TabIndex = 5;
             // 
             // calculateButton
             // 
@@ -134,28 +114,13 @@ namespace Receipt
             // 
             // subLabel
             // 
+            this.subLabel.BackColor = System.Drawing.Color.Transparent;
             this.subLabel.Location = new System.Drawing.Point(66, 324);
             this.subLabel.Name = "subLabel";
             this.subLabel.Size = new System.Drawing.Size(124, 160);
             this.subLabel.TabIndex = 7;
             this.subLabel.Text = "SubTotal:\r\n\r\nTax:\r\n\r\nTotal:\r\n\r\n\r\n";
             this.subLabel.Click += new System.EventHandler(this.subLabel_Click);
-            // 
-            // pricesLabel
-            // 
-            this.pricesLabel.Location = new System.Drawing.Point(237, 324);
-            this.pricesLabel.Name = "pricesLabel";
-            this.pricesLabel.Size = new System.Drawing.Size(105, 128);
-            this.pricesLabel.TabIndex = 8;
-            this.pricesLabel.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // errorLabel
-            // 
-            this.errorLabel.Location = new System.Drawing.Point(66, 235);
-            this.errorLabel.Name = "errorLabel";
-            this.errorLabel.Size = new System.Drawing.Size(276, 25);
-            this.errorLabel.TabIndex = 9;
-            this.errorLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // black
             // 
@@ -168,6 +133,7 @@ namespace Receipt
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Location = new System.Drawing.Point(66, 530);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(103, 25);
@@ -196,6 +162,7 @@ namespace Receipt
             // 
             // changeLabel
             // 
+            this.changeLabel.BackColor = System.Drawing.Color.Transparent;
             this.changeLabel.Location = new System.Drawing.Point(71, 625);
             this.changeLabel.Name = "changeLabel";
             this.changeLabel.Size = new System.Drawing.Size(98, 29);
@@ -204,9 +171,10 @@ namespace Receipt
             // 
             // amountLabel
             // 
+            this.amountLabel.BackColor = System.Drawing.Color.Transparent;
             this.amountLabel.Location = new System.Drawing.Point(237, 625);
             this.amountLabel.Name = "amountLabel";
-            this.amountLabel.Size = new System.Drawing.Size(105, 52);
+            this.amountLabel.Size = new System.Drawing.Size(105, 63);
             this.amountLabel.TabIndex = 15;
             this.amountLabel.Click += new System.EventHandler(this.label2_Click);
             // 
@@ -290,12 +258,64 @@ namespace Receipt
             this.messageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.messageLabel.Visible = false;
             // 
+            // pencilBox
+            // 
+            this.pencilBox.Location = new System.Drawing.Point(288, 80);
+            this.pencilBox.Name = "pencilBox";
+            this.pencilBox.Size = new System.Drawing.Size(54, 30);
+            this.pencilBox.TabIndex = 24;
+            // 
+            // eraserBox
+            // 
+            this.eraserBox.Location = new System.Drawing.Point(288, 136);
+            this.eraserBox.Name = "eraserBox";
+            this.eraserBox.Size = new System.Drawing.Size(54, 30);
+            this.eraserBox.TabIndex = 25;
+            // 
+            // penBox
+            // 
+            this.penBox.Location = new System.Drawing.Point(288, 191);
+            this.penBox.Name = "penBox";
+            this.penBox.Size = new System.Drawing.Size(54, 30);
+            this.penBox.TabIndex = 26;
+            // 
+            // subtotLabel
+            // 
+            this.subtotLabel.BackColor = System.Drawing.Color.Transparent;
+            this.subtotLabel.Location = new System.Drawing.Point(196, 324);
+            this.subtotLabel.Name = "subtotLabel";
+            this.subtotLabel.Size = new System.Drawing.Size(146, 25);
+            this.subtotLabel.TabIndex = 27;
+            // 
+            // taxLabel
+            // 
+            this.taxLabel.BackColor = System.Drawing.Color.Transparent;
+            this.taxLabel.Location = new System.Drawing.Point(196, 368);
+            this.taxLabel.Name = "taxLabel";
+            this.taxLabel.Size = new System.Drawing.Size(146, 33);
+            this.taxLabel.TabIndex = 28;
+            // 
+            // totalLabel
+            // 
+            this.totalLabel.BackColor = System.Drawing.Color.Transparent;
+            this.totalLabel.Location = new System.Drawing.Point(196, 401);
+            this.totalLabel.Name = "totalLabel";
+            this.totalLabel.Size = new System.Drawing.Size(146, 28);
+            this.totalLabel.TabIndex = 29;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(904, 793);
+            this.BackgroundImage = global::Receipt.Properties.Resources.School_background;
+            this.ClientSize = new System.Drawing.Size(894, 793);
+            this.Controls.Add(this.totalLabel);
+            this.Controls.Add(this.taxLabel);
+            this.Controls.Add(this.subtotLabel);
+            this.Controls.Add(this.penBox);
+            this.Controls.Add(this.eraserBox);
+            this.Controls.Add(this.pencilBox);
             this.Controls.Add(this.messageLabel);
             this.Controls.Add(this.nameLabel);
             this.Controls.Add(this.numberLabel);
@@ -310,20 +330,19 @@ namespace Receipt
             this.Controls.Add(this.moneyBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.black);
-            this.Controls.Add(this.errorLabel);
-            this.Controls.Add(this.pricesLabel);
             this.Controls.Add(this.subLabel);
             this.Controls.Add(this.calculateButton);
-            this.Controls.Add(this.penBox);
-            this.Controls.Add(this.eraserBox);
-            this.Controls.Add(this.pencilBox);
             this.Controls.Add(this.penLabel);
             this.Controls.Add(this.eraserLabel);
             this.Controls.Add(this.pencilLabel);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.pencilBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eraserBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.penBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -334,13 +353,8 @@ namespace Receipt
         private System.Windows.Forms.Label pencilLabel;
         private System.Windows.Forms.Label eraserLabel;
         private System.Windows.Forms.Label penLabel;
-        private System.Windows.Forms.TextBox pencilBox;
-        private System.Windows.Forms.TextBox eraserBox;
-        private System.Windows.Forms.TextBox penBox;
         private System.Windows.Forms.Button calculateButton;
         private System.Windows.Forms.Label subLabel;
-        private System.Windows.Forms.Label pricesLabel;
-        private System.Windows.Forms.Label errorLabel;
         private System.Windows.Forms.Label black;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox moneyBox;
@@ -355,6 +369,12 @@ namespace Receipt
         private System.Windows.Forms.Label numberLabel;
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.Label messageLabel;
+        private System.Windows.Forms.NumericUpDown pencilBox;
+        private System.Windows.Forms.NumericUpDown eraserBox;
+        private System.Windows.Forms.NumericUpDown penBox;
+        private System.Windows.Forms.Label subtotLabel;
+        private System.Windows.Forms.Label taxLabel;
+        private System.Windows.Forms.Label totalLabel;
     }
 }
 
